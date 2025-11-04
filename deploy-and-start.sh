@@ -174,8 +174,8 @@ echo ""
 # 6. 下载项目文件
 log_info "第6步: 下载项目文件..."
 
-# 创建临时下载目录
-TEMP_DIR="/tmp/termux-mcp-download-$$"
+# 创建临时下载目录（避免/tmp只读问题）
+TEMP_DIR="$PROJECT_DIR/temp-download-$$"
 mkdir -p "$TEMP_DIR"
 
 # 尝试多种下载方式
