@@ -352,6 +352,23 @@ class MCPProtocol {
 // Initialize MCP
 const mcp = new MCPProtocol();
 
+// Root endpoint for MCP clients
+app.get('/', (req, res) => {
+  res.json({
+    name: 'Termux MCP Server',
+    version: config.version || '1.0.0',
+    description: 'MCP (Model Context Protocol) server running on Termux Android environment',
+    endpoints: {
+      health: '/health',
+      tools: '/api/mcp/tools',
+      call: '/api/mcp/call',
+      status: '/api/status'
+    },
+    tools: mcp.getTools().length,
+    timestamp: new Date().toISOString()
+  });
+});
+
 // API Routes
 
 // Health check
